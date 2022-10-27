@@ -10,3 +10,6 @@
 
 ## feature 03
 - 1 - jwt
+
+## feature 04
+- 1 - criando middleware e rotas privadas para autenticar e verificar se o usuario é um usuario valido

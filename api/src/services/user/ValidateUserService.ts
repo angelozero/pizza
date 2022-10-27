@@ -1,4 +1,4 @@
-import { UserModel } from "./model/UserModel";
+import { UserModel } from "./interfaces/UserModel";
 
 class ValidateUserService {
     async execute(user: UserModel) {

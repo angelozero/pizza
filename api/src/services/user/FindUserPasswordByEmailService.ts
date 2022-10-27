@@ -1,15 +1,15 @@
 import prismaClient from "../../prisma";
-import { UserModel } from "./model/UserModel";
+import { UserModel } from "./interfaces/UserModel";
 
 class FindUserPasswordByEmailService {
-    async execute(user: UserModel): Promise<string> {
-        if (!user.email) {
+    async execute(userEmail: string): Promise<string> {
+        if (!userEmail) {
             throw new Error('[FindUserByEmailService] - email was not provided');
         }
 
         const userData = await prismaClient.user.findFirst({
             where: {
-                email: user.email
+                email: userEmail
             },
             select: {
                 password: true,
