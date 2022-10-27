@@ -1,6 +1,4 @@
 import { compare } from "bcryptjs";
-
-
 class ValidatePasswordService {
     async execute(userPassword: string, userHashPassword: string) {
 

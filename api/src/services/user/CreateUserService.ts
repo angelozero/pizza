@@ -1,15 +1,18 @@
 import prismaClient from "../../prisma";
 import { hash } from "bcryptjs";
-import { UserModel } from "./model/UserModel";
+import { UserModel } from "./interfaces/UserModel";
 import { ValidateUserService } from "./ValidateUserService";
 import { CheckUserEmailService } from "./CheckUserEmailService";
-import { UserModelResponse } from "./model/UserModelResponse";
+import { UserModelResponse } from "./interfaces/UserModelResponse";
 
 class CreateUserService {
     async execute(user: UserModel): Promise<UserModelResponse> {
+        const getCheckUserEmailService = new CheckUserEmailService();
+        const getValidateUserService = new ValidateUserService();
+
         try {
-            await getValidateUserService().execute(user);
-            await getCheckUserEmailService().execute(user);
+            await getValidateUserService.execute(user);
+            await getCheckUserEmailService.execute(user);
 
             const userCreated = await prismaClient.user.create({
                 data: {
@@ -23,7 +26,7 @@ class CreateUserService {
                     email: true,
                 }
             })
-            
+
             return userCreated as UserModelResponse;
         }
 
@@ -32,13 +35,5 @@ class CreateUserService {
         }
     }
 }
-
-function getCheckUserEmailService(){
-    return new CheckUserEmailService();
-}
-function getValidateUserService(){
-    return new ValidateUserService();
-}
-
 
 export { CreateUserService }

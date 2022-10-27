@@ -1,6 +1,6 @@
 import prismaClient from "../../prisma";
-import { UserModel } from "./model/UserModel";
-import { UserModelResponse } from "./model/UserModelResponse";
+import { UserModel } from "./interfaces/UserModel";
+import { UserModelResponse } from "./interfaces/UserModelResponse";
 
 class FindUserByEmailService {
     async execute(user: UserModel): Promise<UserModelResponse> {

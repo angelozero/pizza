@@ -1,5 +1,5 @@
 import { sign } from "jsonwebtoken"
-import { UserModel } from "../user/model/UserModel"
+import { UserModel } from "../../user/interfaces/UserModel"
 
 sign
 
