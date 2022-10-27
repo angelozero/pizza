@@ -6,7 +6,7 @@ class CheckUserEmailService {
         const userAlreadyExists = await getFindUserByEmailService().execute(user);
 
         if (userAlreadyExists) {
-            throw new Error('User already exists');
+            throw new Error('[CheckUserEmailService] - User already exists');
         }
     }
 }

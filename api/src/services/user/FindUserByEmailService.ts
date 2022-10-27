@@ -1,8 +1,9 @@
 import prismaClient from "../../prisma";
 import { UserModel } from "./model/UserModel";
+import { UserModelResponse } from "./model/UserModelResponse";
 
 class FindUserByEmailService {
-    async execute(user: UserModel) {
+    async execute(user: UserModel): Promise<UserModelResponse> {
         if (!user.email) {
            throw new Error('[FindUserByEmailService] - email was not provided');
         }
@@ -11,11 +12,7 @@ class FindUserByEmailService {
             where: {
                 email: user.email
             }
-        }) as UserModel;
-
-        if (!userData) {
-            throw new Error('[FindUserByEmailService] - user data was not found');
-         }
+        });
 
          return userData;
     }
