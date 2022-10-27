@@ -3,9 +3,10 @@ import { hash } from "bcryptjs";
 import { UserModel } from "./model/UserModel";
 import { ValidateUserService } from "./ValidateUserService";
 import { CheckUserEmailService } from "./CheckUserEmailService";
+import { UserModelResponse } from "./model/UserModelResponse";
 
 class CreateUserService {
-    async execute(user: UserModel) {
+    async execute(user: UserModel): Promise<UserModelResponse> {
         try {
             await getValidateUserService().execute(user);
             await getCheckUserEmailService().execute(user);
@@ -23,7 +24,7 @@ class CreateUserService {
                 }
             })
             
-            return userCreated;
+            return userCreated as UserModelResponse;
         }
 
         catch (error: any) {
