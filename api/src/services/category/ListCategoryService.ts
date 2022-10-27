@@ -10,7 +10,6 @@ class ListCategoryService {
         try {
             const categorysList = await prismaClient.category.findMany({
                 select: {
-                    id: true,
                     name: true,
                 }
             })
