@@ -5,12 +5,12 @@ import { UserRequest } from "./interfaces/UserRequest";
 
 class CreateUserController {
     async handle(req: Request, res: Response) {
-        
+
         const service = new CreateUserService();
 
-        const response = await service.execute(req.body as UserRequest)
+        const data = await service.execute(req.body as UserRequest);
 
-        return res.json({ ok: response });
+        return res.json({ data });
     }
 }
 
