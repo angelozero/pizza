@@ -1,9 +1,10 @@
 import prismaClient from "../../prisma";
 import { FindCategoryByIdService } from "../category/FindCategoryByIdService";
+import { CategoryModel } from "../category/interfaces/CategoryModel";
 
 
 class FindProductByCategoryIdService {
-    async execute(categoryId: string) {
+    async execute(categoryId: string): Promise<CategoryModel[]> {
 
         const categoryService = new FindCategoryByIdService();
 

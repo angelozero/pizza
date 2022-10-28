@@ -4,12 +4,12 @@ import { ValidateUserService } from "../../user/ValidateUserService";
 import { FindUserByEmailService } from "../../user/FindUserByEmailService";
 
 import { SingService } from "../sing/SingService";
-import { AuthUserRespone } from "../sing/interfaces/AuthUserRespone";
+import { AuthUserModel } from "../sing/interfaces/AuthUserModel";
 import { ValidatePasswordService } from "../sing/ValidatePasswordService";
 import { FindUserPasswordByEmailService } from "../../user/FindUserPasswordByEmailService";
 
 class AuthService {
-    async execute(user: UserModel): Promise<AuthUserRespone> {
+    async execute(user: UserModel): Promise<AuthUserModel> {
 
         const validateUserService = new ValidateUserService();
         const findUserdByEmailService = new FindUserByEmailService();

@@ -3,7 +3,7 @@ import { ItemOrderModel } from "./interfaces/ItemOrderModel";
 import { ValidateItemOrderService } from "./ValidateItemOrderService";
 
 class CreateItemOrderService {
-    async execute(item: ItemOrderModel) {
+    async execute(item: ItemOrderModel): Promise<ItemOrderModel> {
         const validateItemOrderService = new ValidateItemOrderService();
 
         try {
@@ -23,13 +23,16 @@ class CreateItemOrderService {
                 }
             })
 
-
-            return itemOrder;
+            return {
+                id: itemOrder.id,
+                orderId: itemOrder.order_id,
+                productId: itemOrder.product_id,
+                amount: itemOrder.amount,
+            };
 
         } catch (error) {
-            throw new Error(`[AddItemOrderService] - ${error}`)
+            throw new Error(`[CreateItemOrderService] - ${error}`)
         }
-
     }
 }
 

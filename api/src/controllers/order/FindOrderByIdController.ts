@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 
 import { FindOrderByIdService } from "../../services/order/FindOrderByIdService";
+import { OrderResponse } from "./interfaces/OrderResponse";
 
 
 class FindOrderByIdController {
@@ -8,7 +9,7 @@ class FindOrderByIdController {
 
         const service = new FindOrderByIdService();
 
-        const data = await service.execute(req.params.id as string);
+        const data = await service.execute(req.params.id as string) as OrderResponse;
 
         return res.json({ data });
     }
