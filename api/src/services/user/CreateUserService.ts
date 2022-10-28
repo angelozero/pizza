@@ -27,7 +27,7 @@ class CreateUserService {
                 }
             })
 
-            return userCreated as UserModelResponse;
+            return userCreated;
         }
 
         catch (error: any) {

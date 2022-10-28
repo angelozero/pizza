@@ -4,7 +4,7 @@ import { ValidateOrderService } from "./ValidateOrderService";
 
 
 class CreateOrderService {
-    async execute(order: OrderModel) {
+    async execute(order: OrderModel): Promise<OrderModel> {
         const validateOrderService = new ValidateOrderService();
 
         try {

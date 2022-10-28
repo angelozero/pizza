@@ -17,6 +17,7 @@ import { FindProductByCategoryIdController } from './controllers/product/FindPro
 import { CreateOrderController } from './controllers/order/CreateOrderController';
 import { FindOrderByIdController } from './controllers/order/FindOrderByIdController';
 import { CloseOrderController } from './controllers/order/CloseOrderController';
+import { CreateItemOrderController } from './controllers/order/CreateItemOrderController';
 
 
 const router = Router();
@@ -41,5 +42,7 @@ router.get('/product/category/:id', isAuthenticated, new FindProductByCategoryId
 router.post('/order', isAuthenticated, new CreateOrderController().handle)
 router.get('/order/:id', isAuthenticated, new FindOrderByIdController().handle)
 router.delete('/order/:id', isAuthenticated, new CloseOrderController().handle)
+router.post('/order/item', isAuthenticated, new CreateItemOrderController().handle)
+
 
 export { router };

@@ -1,7 +1,8 @@
 import prismaClient from "../../prisma";
+import { OrderModel } from "./interfaces/OrderModel";
 
 class FindOrderByIdService {
-    async execute(orderId: string) {
+    async execute(orderId: string): Promise<OrderModel> {
 
         try {
 
