@@ -11,7 +11,7 @@ class CreateProductController {
         }
 
         const productRequest = req.body;
-        const { originalname, filename: banner} = req.file;
+        const { originalname, filename: banner } = req.file;
 
         const data = await service.execute({
             name: productRequest.name,
