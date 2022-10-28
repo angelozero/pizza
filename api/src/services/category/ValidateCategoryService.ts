@@ -10,6 +10,7 @@ class ValidateCategoryService {
         if (!category.name) {
             throw new Error('[ValidateCategoryService] - category name was not informed')
         }
+
     }
 }
 

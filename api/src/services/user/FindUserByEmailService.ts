@@ -4,17 +4,23 @@ import { UserModelResponse } from "./interfaces/UserModelResponse";
 
 class FindUserByEmailService {
     async execute(user: UserModel): Promise<UserModelResponse> {
-        if (!user.email) {
-           throw new Error('[FindUserByEmailService] - email was not provided');
-        }
+        try {
 
-        const userData =  await prismaClient.user.findFirst({
-            where: {
-                email: user.email
+            if (!user.email) {
+                throw new Error('[FindUserByEmailService] - email was not provided');
             }
-        });
 
-         return userData;
+            const userData = await prismaClient.user.findFirst({
+                where: {
+                    email: user.email
+                }
+            });
+
+            return userData;
+
+        } catch (error) {
+            throw new Error(error);
+        }
     }
 }
 
