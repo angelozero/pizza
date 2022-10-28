@@ -7,12 +7,12 @@ import { UserModelResponse } from "./interfaces/UserModelResponse";
 
 class CreateUserService {
     async execute(user: UserModel): Promise<UserModelResponse> {
-        const getCheckUserEmailService = new CheckUserEmailService();
-        const getValidateUserService = new ValidateUserService();
+        const checkUserEmailService = new CheckUserEmailService();
+        const validateUserService = new ValidateUserService();
 
         try {
-            await getValidateUserService.execute(user);
-            await getCheckUserEmailService.execute(user);
+            await validateUserService.execute(user);
+            await checkUserEmailService.execute(user);
 
             const userCreated = await prismaClient.user.create({
                 data: {

@@ -11,20 +11,20 @@ import { FindUserPasswordByEmailService } from "../../user/FindUserPasswordByEma
 class AuthService {
     async execute(user: UserModel): Promise<AuthUserRespone> {
 
-        const getValidateUserService = new ValidateUserService();
-        const getFindUserdByEmailService = new FindUserByEmailService();
-        const getFindUserPasswordByEmailService = new FindUserPasswordByEmailService();
-        const getSingService = new SingService();
-        const getValidatePasswordService = new ValidatePasswordService();
+        const validateUserService = new ValidateUserService();
+        const findUserdByEmailService = new FindUserByEmailService();
+        const findUserPasswordByEmailService = new FindUserPasswordByEmailService();
+        const singService = new SingService();
+        const validatePasswordService = new ValidatePasswordService();
 
         try {
-            await getValidateUserService.execute(user);
+            await validateUserService.execute(user);
 
-            const password = await getFindUserPasswordByEmailService.execute(user.email);
-            await getValidatePasswordService.execute(user.password, password);
+            const password = await findUserPasswordByEmailService.execute(user.email);
+            await validatePasswordService.execute(user.password, password);
 
-            const userData = await getFindUserdByEmailService.execute(user);
-            const token = await getSingService.excute(userData as UserModel);
+            const userData = await findUserdByEmailService.execute(user);
+            const token = await singService.excute(userData as UserModel);
 
             return {
                 id: userData.id,
