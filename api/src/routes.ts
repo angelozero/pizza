@@ -13,6 +13,7 @@ import { CreateProductController } from './controllers/product/CreateProductCont
 import { FindProductByIdController } from './controllers/product/FindProductByIdController';
 
 import uploadConfig from './config/multer'
+import { FindProductByCategoryIdController } from './controllers/product/FindProductByCategoryIdController';
 
 
 const router = Router();
@@ -31,6 +32,7 @@ router.get('/category', isAuthenticated, new ListCategoryController().handle)
 // Product
 router.post('/product', isAuthenticated, upload.single('banner'), new CreateProductController().handle)
 router.get('/product/:id', isAuthenticated, new FindProductByIdController().handle)
+router.get('/product/category/:id', isAuthenticated, new FindProductByCategoryIdController().handle)
 
 
 export { router };
