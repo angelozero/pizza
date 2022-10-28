@@ -1,4 +1,4 @@
-export interface ItemOrderResponse {
+export interface ItemResponse {
     id: string,
     orderId: string,
     productId: string,

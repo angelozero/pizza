@@ -2,7 +2,7 @@ import prismaClient from "../../prisma";
 import { FindOrderByIdService } from "./FindOrderByIdService";
 
 
-class CloseOrderByIdService {
+class DeleteOrderByIdService {
     async execute(orderId: string) {
         const service = new FindOrderByIdService();
 
@@ -13,7 +13,7 @@ class CloseOrderByIdService {
                 throw new Error('Order was not found')
             }
 
-           await prismaClient.order.delete({
+            await prismaClient.order.delete({
                 where: {
                     id: orderData.id,
                 }
@@ -21,9 +21,9 @@ class CloseOrderByIdService {
         }
 
         catch (error: any) {
-            throw new Error(`[CloseOrderByIdService] - ${error.message}`);
+            throw new Error(`[DeleteOrderByIdService] - ${error.message}`);
         }
     }
 }
 
-export { CloseOrderByIdService }
+export { DeleteOrderByIdService }

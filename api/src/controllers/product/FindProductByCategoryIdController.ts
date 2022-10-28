@@ -8,7 +8,7 @@ class FindProductByCategoryIdController {
 
         const service = new FindProductByCategoryIdService();
 
-        const data = await service.execute(req.params.id as string) as ProductResponse[];
+        const data = await service.execute(req.query.id as string) as ProductResponse[];
 
         return res.json({ data });
     }

@@ -7,7 +7,7 @@ class DetailUserController {
     async handle(req: Request, res: Response) {
         const service = new DetailUserService();
 
-        const data = await service.execute(req.user_id) as UserResponse
+        const data = await service.execute(req.headers.id as string) as UserResponse
 
         return res.json({ data });
     }

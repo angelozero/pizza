@@ -16,8 +16,9 @@ import uploadConfig from './config/multer'
 import { FindProductByCategoryIdController } from './controllers/product/FindProductByCategoryIdController';
 import { CreateOrderController } from './controllers/order/CreateOrderController';
 import { FindOrderByIdController } from './controllers/order/FindOrderByIdController';
-import { CloseOrderController } from './controllers/order/CloseOrderController';
-import { CreateItemOrderController } from './controllers/order/CreateItemOrderController';
+import { DeleteOrderController } from './controllers/order/DeleteOrderController';
+import { CreateItemController } from './controllers/item/CreateItemController';
+import { RemoveItemController } from './controllers/item/RemoveItemController';
 
 
 const router = Router();
@@ -35,14 +36,17 @@ router.get('/category', isAuthenticated, new ListCategoryController().handle)
 
 // Product
 router.post('/product', isAuthenticated, upload.single('banner'), new CreateProductController().handle)
-router.get('/product/:id', isAuthenticated, new FindProductByIdController().handle)
-router.get('/product/category/:id', isAuthenticated, new FindProductByCategoryIdController().handle)
+router.get('/product', isAuthenticated, new FindProductByIdController().handle)
+router.get('/product/category', isAuthenticated, new FindProductByCategoryIdController().handle)
 
 // Order
 router.post('/order', isAuthenticated, new CreateOrderController().handle)
-router.get('/order/:id', isAuthenticated, new FindOrderByIdController().handle)
-router.delete('/order/:id', isAuthenticated, new CloseOrderController().handle)
-router.post('/order/item', isAuthenticated, new CreateItemOrderController().handle)
+router.get('/order', isAuthenticated, new FindOrderByIdController().handle)
+router.delete('/order', isAuthenticated, new DeleteOrderController().handle)
+
+// Item
+router.post('/item', isAuthenticated, new CreateItemController().handle)
+router.delete('/item', isAuthenticated, new RemoveItemController().handle)
 
 
 export { router };
