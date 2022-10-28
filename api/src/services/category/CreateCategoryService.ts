@@ -8,7 +8,8 @@ class CreateCategoryService {
         const validateCategoryService = new ValidateCategoryService();
 
         try {
-            await validateCategoryService.execute(category as CategoryModel);
+            await validateCategoryService.execute(category);
+            
             const categoryCreated = await prismaClient.category.create({
                 data: {
                     name: category.name,

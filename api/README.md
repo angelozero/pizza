@@ -13,3 +13,9 @@
 
 ## feature 04
 - 1 - criando middleware e rotas privadas para autenticar e verificar se o usuario é um usuario valido
+
+## feature 05
+- 1 - category
+
+## feature 06
+- 1 - product

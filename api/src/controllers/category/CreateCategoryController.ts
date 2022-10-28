@@ -8,9 +8,9 @@ class CreateCategoryController {
 
         const service = new CreateCategoryService();
 
-        const response = await service.execute(req.body as CategoryRequest);
+        const data = await service.execute(req.body as CategoryRequest);
 
-        return res.json({ ok: response });
+        return res.json({ data });
     }
 }
 

@@ -5,11 +5,10 @@ import { ValidateCategoryService } from "./ValidateCategoryService";
 class ListCategoryService {
     async execute(): Promise<CategoryModel[]> {
 
-        const validateCategoryService = new ValidateCategoryService();
-
         try {
             const categorysList = await prismaClient.category.findMany({
                 select: {
+                    id: true,
                     name: true,
                 }
             })
@@ -17,7 +16,7 @@ class ListCategoryService {
             return categorysList;
 
         } catch (error) {
-            throw new Error(`[CreateCategoryService] - ${error.message}`)
+            throw new Error(`[ListCategoryService] - ${error.message}`)
         }
     }
 }
