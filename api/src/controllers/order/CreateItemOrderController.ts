@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { CreateItemOrderService } from "../../services/order/CreateItemOrderService";
+import { CreateItemService } from "../../services/item/CreateItemService";
 import { ItemOrderRequest } from "./interfaces/ItemOrderRequest";
 import { ItemOrderResponse } from "./interfaces/ItemOrderResponse";
 
@@ -7,7 +7,7 @@ import { ItemOrderResponse } from "./interfaces/ItemOrderResponse";
 class CreateItemOrderController {
     async handle(req: Request, res: Response) {
 
-        const service = new CreateItemOrderService();
+        const service = new CreateItemService();
 
         const data = await service.execute(req.body as ItemOrderRequest) as ItemOrderResponse;
 

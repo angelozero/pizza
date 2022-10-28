@@ -1,4 +1,4 @@
-export interface ItemOrderModel {
+export interface ItemModel {
     id?: string,
     orderId: string,
     productId: string,

@@ -1,8 +1,7 @@
-import { ItemOrderModel } from "./interfaces/ItemOrderModel"
-import { OrderModel } from "./interfaces/OrderModel"
+import { ItemModel } from "./interfaces/ItemModel"
 
-class ValidateItemOrderService {
-    async execute(item: ItemOrderModel) {
+class ValidateItemService {
+    async execute(item: ItemModel) {
         if (!item) {
             throw new Error('Item was not informed')
         }
@@ -18,4 +17,4 @@ class ValidateItemOrderService {
     }
 }
 
-export { ValidateItemOrderService }
+export { ValidateItemService }
