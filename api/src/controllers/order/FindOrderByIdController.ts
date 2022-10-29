@@ -9,7 +9,7 @@ class FindOrderByIdController {
 
         const service = new FindOrderByIdService();
 
-        const data = await service.execute(req.params.id as string) as OrderResponse;
+        const data = await service.execute(req.query.id as string) as OrderResponse;
 
         return res.json({ data });
     }

@@ -19,7 +19,7 @@ class CreateProductService {
                     price: product.price,
                     description: product.description,
                     banner: product.banner,
-                    category_id: product.category.id,
+                    category_id: product.categoryId,
                 },
                 select: {
                     id: true,
@@ -39,7 +39,7 @@ class CreateProductService {
                 price: producCreated.price,
                 description: producCreated.description,
                 banner: producCreated.banner,
-                category: categoryData,
+                categoryId: categoryData.id,
             };
 
         } catch (error) {

@@ -6,5 +6,5 @@ export interface ProductModel {
     price: string,
     description: string,
     banner: string,
-    category: CategoryModel
+    categoryId: string,
 }

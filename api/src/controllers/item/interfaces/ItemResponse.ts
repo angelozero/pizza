@@ -1,5 +1,5 @@
-export interface ItemOrderModel {
-    id?: string,
+export interface ItemResponse {
+    id: string,
     orderId: string,
     productId: string,
     amount: number,

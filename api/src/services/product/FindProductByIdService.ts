@@ -10,9 +10,9 @@ class FindProductByIdService {
         const categoryService = new FindCategoryByIdService();
 
         try {
-           if(!productId){
-               throw new Error('[FindProductByIdService] - product id was not informed');
-           }
+            if (!productId) {
+                throw new Error('[FindProductByIdService] - product id was not informed');
+            }
 
             const producCreated = await prismaClient.product.findFirst({
                 where: {
@@ -28,6 +28,10 @@ class FindProductByIdService {
                 }
             })
 
+            if (!producCreated) {
+                throw new Error(`[FindProductByIdService] - product informed was not found`)
+            }
+
             const categoryData = await categoryService.execute(producCreated.category_id);
 
             return {
@@ -40,7 +44,7 @@ class FindProductByIdService {
             };
 
         } catch (error) {
-            throw new Error(error);
+            throw new Error(`[FindProductByIdService] - ${error}`);
         }
     }
 }

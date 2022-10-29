@@ -1,10 +1,10 @@
 import prismaClient from "../../prisma";
-import { ItemOrderModel } from "./interfaces/ItemOrderModel";
-import { ValidateItemOrderService } from "./ValidateItemOrderService";
+import { ItemModel } from "./interfaces/ItemModel";
+import { ValidateItemService } from "./ValidateItemService";
 
-class CreateItemOrderService {
-    async execute(item: ItemOrderModel): Promise<ItemOrderModel> {
-        const validateItemOrderService = new ValidateItemOrderService();
+class CreateItemService {
+    async execute(item: ItemModel): Promise<ItemModel> {
+        const validateItemOrderService = new ValidateItemService();
 
         try {
             await validateItemOrderService.execute(item);
@@ -31,9 +31,9 @@ class CreateItemOrderService {
             };
 
         } catch (error) {
-            throw new Error(`[CreateItemOrderService] - ${error}`)
+            throw new Error(`[CreateItemService] - ${error}`)
         }
     }
 }
 
-export { CreateItemOrderService }
+export { CreateItemService }
