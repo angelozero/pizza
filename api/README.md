@@ -7,7 +7,6 @@
 - 1 - cadastro de usuario
 - 2 - validacao de usuario 
 
-
 ## feature 03
 - 1 - jwt
 
@@ -22,3 +21,9 @@
 
 ## feature 07
 - 1 - order
+
+## feature 08
+- 1 - add items on an order
+
+## feature 09
+- 1 - finish an order
