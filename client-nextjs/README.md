@@ -4,3 +4,6 @@
     ```
     npm install --global npm
     ```
+
+- initial config
+- add css SASS
