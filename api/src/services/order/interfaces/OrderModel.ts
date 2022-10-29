@@ -1,6 +1,6 @@
 export interface OrderModel {
     id?: string,
-    table: number,
+    table?: number,
     status?: boolean,
     draft?: boolean,
     name: string,

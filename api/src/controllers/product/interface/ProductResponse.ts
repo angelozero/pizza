@@ -6,5 +6,5 @@ export interface ProductResponse {
     price: string,
     description: string,
     banner: string,
-    category: CategoryResponse
+    categoryId: string,
 }

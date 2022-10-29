@@ -19,6 +19,9 @@ import { FindOrderByIdController } from './controllers/order/FindOrderByIdContro
 import { DeleteOrderController } from './controllers/order/DeleteOrderController';
 import { CreateItemController } from './controllers/item/CreateItemController';
 import { RemoveItemController } from './controllers/item/RemoveItemController';
+import { SendOrderController } from './controllers/order/SendOrderController';
+import { FindOrdersController } from './controllers/order/FindOrdersController';
+import { DetailOrderByIdController } from './controllers/order/DetailOrderByIdController';
 
 
 const router = Router();
@@ -43,6 +46,10 @@ router.get('/product/category', isAuthenticated, new FindProductByCategoryIdCont
 router.post('/order', isAuthenticated, new CreateOrderController().handle)
 router.get('/order', isAuthenticated, new FindOrderByIdController().handle)
 router.delete('/order', isAuthenticated, new DeleteOrderController().handle)
+router.put('/order', isAuthenticated, new SendOrderController().handle)
+router.get('/orders', isAuthenticated, new FindOrdersController().handle)
+router.get('/order/detail', isAuthenticated, new DetailOrderByIdController().handle)
+
 
 // Item
 router.post('/item', isAuthenticated, new CreateItemController().handle)

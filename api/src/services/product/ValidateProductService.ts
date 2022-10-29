@@ -19,11 +19,7 @@ class ValidateProductService {
             throw new Error('[ValidateProductService] - product banner was not informed')
         }
         
-        if (!product.category) {
-            throw new Error('[ValidateProductService] - product category was not informed')
-        }
-
-        if (!product.category.id) {
+        if (!product.categoryId) {
             throw new Error('[ValidateProductService] - product category id was not informed')
         }
     }

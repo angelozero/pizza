@@ -15,10 +15,7 @@ class CreateProductController {
             price: productRequest.price,
             description: productRequest.description,
             banner: banner,
-            category: {
-                id: productRequest.category.id,
-                name: productRequest.category.name,
-            }
+            categoryId: productRequest.categoryId,
         }) as ProductResponse;
 
         return res.json({ data });
