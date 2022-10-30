@@ -29,7 +29,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
     // !!use -> return true if user has data, else false.
     const isAuthenticated = !!user;
 
-    async function singIn() {
+    async function singIn({ email, password }: SingInProps) {
         alert("ok")
     }
 
