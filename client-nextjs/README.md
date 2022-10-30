@@ -6,4 +6,18 @@
     ```
 
 - initial config
+
+## feature 02
 - add css SASS
+
+## feature 03 
+- context api ( armazenando o token do usuario na aplicacao )
+- AuthContext
+- 
+function MyApp({ Component, pageProps }: AppProps) {
+  return (
+    <AuthProvider>
+      <Component {...pageProps} />
+    </AuthProvider>
+  )
+}
