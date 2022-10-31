@@ -81,7 +81,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
             Router.push('/dashboard');
 
         } catch (error) {
-            toast.success("Something went wrong :(");
+            toast.error("Something went wrong :(");
             console.log("[ERROR] - Sing In Error ", error);
         }
     }
