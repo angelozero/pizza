@@ -6,6 +6,7 @@ import styles from '../../styles/home.module.scss'
 import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
+import { toast } from 'react-toastify';
 
 import { Input } from '../components/ui/input'
 import { Button } from '../components/ui/button'
@@ -22,11 +23,16 @@ export default function Home() {
   async function handleLogin(event: FormEvent) {
     event.preventDefault();
 
+    if (!email || !password) {
+      toast.error('Insert your email and password');
+      return;
+    }
 
-    await singIn({
-      email,
-      password
-    });
+    setLoading(true);
+
+    await singIn({ email, password });
+
+    setLoading(false);
   }
 
 

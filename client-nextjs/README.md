@@ -21,3 +21,9 @@ function MyApp({ Component, pageProps }: AppProps) {
     </AuthProvider>
   )
 }
+
+## feature 04 
+- login / auth / cookie config
+
+## feature 05
+- create user registration + alerts ( react toastify )
