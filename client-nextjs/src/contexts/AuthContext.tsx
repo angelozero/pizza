@@ -1,4 +1,4 @@
-import { createContext, ReactNode, useState } from "react";
+import { createContext, ReactNode, useState, useEffect } from "react";
 import { destroyCookie, setCookie, parseCookies } from 'nookies';
 import Router from 'next/router'
 import { api } from "../services/apiClient";
@@ -49,6 +49,22 @@ export function AuthProvider({ children }: AuthProviderProps) {
     const [user, setUser] = useState<UserProps>();
     // !!use -> return true if user has data, else false.
     const isAuthenticated = !!user;
+
+
+    // cheking if is the user and getting his info
+    useEffect(() => {
+        const { '@netxhauth.token': token } = parseCookies();
+        
+        if (token) {    
+            api.get('/me').then(response => {
+                const { id, name, email } = response.data;
+                setUser({ id, name, email })
+
+            }).catch(() => {
+                singOut();
+            })
+        }
+    }, [])
 
     async function singIn({ email, password }: SingInProps) {
 
