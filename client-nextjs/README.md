@@ -29,4 +29,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 - create user registration + alerts ( react toastify )
 
 ## feature 06
-- private routes / server side hendering  
+- private routes / server side hendering  / SingIn - SingOut - /me
+
+## feature 07
+- header component
