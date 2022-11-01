@@ -1,4 +1,4 @@
-import { createContext, ReactNode, useState } from "react";
+import { createContext, ReactNode, useState, useEffect } from "react";
 import { destroyCookie, setCookie, parseCookies } from 'nookies';
 import Router from 'next/router'
 import { api } from "../services/apiClient";
@@ -50,6 +50,22 @@ export function AuthProvider({ children }: AuthProviderProps) {
     // !!use -> return true if user has data, else false.
     const isAuthenticated = !!user;
 
+
+    // cheking if is the user and getting his info
+    useEffect(() => {
+        const { '@netxhauth.token': token } = parseCookies();
+        
+        if (token) {    
+            api.get('/me').then(response => {
+                const { id, name, email } = response.data;
+                setUser({ id, name, email })
+
+            }).catch(() => {
+                singOut();
+            })
+        }
+    }, [])
+
     async function singIn({ email, password }: SingInProps) {
 
         try {
@@ -81,7 +97,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
             Router.push('/dashboard');
 
         } catch (error) {
-            toast.success("Something went wrong :(");
+            toast.error("Something went wrong :(");
             console.log("[ERROR] - Sing In Error ", error);
         }
     }

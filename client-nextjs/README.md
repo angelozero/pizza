@@ -27,3 +27,6 @@ function MyApp({ Component, pageProps }: AppProps) {
 
 ## feature 05
 - create user registration + alerts ( react toastify )
+
+## feature 06
+- private routes / server side hendering  
