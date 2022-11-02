@@ -53,7 +53,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
 
     // cheking if is the user and getting his info
     useEffect(() => {
-        const { '@netxhauth.token': token } = parseCookies();
+        const { '@nextauth.token': token } = parseCookies();
         
         if (token) {    
             api.get('/me').then(response => {

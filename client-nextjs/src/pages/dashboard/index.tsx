@@ -1,6 +1,6 @@
 import { canSSAuth } from "../../utils/canSSRAuth"
 import Head from "next/head"
-import { Header } from "../../components/Header/indext"
+import { Header } from "../../components/Header"
 
 
 export default function Dashboard() {
