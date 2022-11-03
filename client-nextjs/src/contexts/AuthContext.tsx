@@ -54,8 +54,9 @@ export function AuthProvider({ children }: AuthProviderProps) {
     // cheking if is the user and getting his info
     useEffect(() => {
         const { '@nextauth.token': token } = parseCookies();
-        
-        if (token) {    
+
+        if (token) {
+            console.log("API ", api)
             api.get('/me').then(response => {
                 const { id, name, email } = response.data;
                 setUser({ id, name, email })
