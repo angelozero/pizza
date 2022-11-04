@@ -220,3 +220,146 @@ router.delete('/item', isAuthenticated, new RemoveItemController().handle)
 
 ## Nexts steps
 - Separate the connection layer  with the database and the services class
+
+# The Client-Side
+- _Obs.: Information if you are getting this error `cb.apply is not a function`_
+- try this [solution](https://stackoverflow.com/questions/67315860/npm-err-cb-apply-is-not-a-function-elementary-os)
+    - run the command in the terminal on root folder type
+```
+    npm install --global npm
+```
+---
+## CSS and SASS
+- For the CSS we are using the [SASS](https://github.com/sass/dart-sass)
+---
+## Auth Context
+- Storing the user token ( see the `canSSRAuth` and `canSSRGuest` files. )
+```javascript
+export function setupAPIClient(context = undefined) {
+    let cookies = parseCookies(context);
+
+    const api = axios.create({
+        baseURL: 'http://localhost:8080',
+        headers: {
+            Authorization: `Bearer ${cookies['@nextauth.token']}`
+        }
+    })
+
+    api.interceptors.response.use(response => {
+        return response;
+    }, (error: AxiosError) => {
+        if (error.response.status === 401) {
+            if (typeof window !== undefined) {
+                singOut();
+            } else {
+                return Promise.reject(new AuthTokenError())
+            }
+        }
+        return Promise.reject(error);
+    })
+
+    return api;
+}
+```
+---
+
+## React-Toastify 
+- Using [React-Toastify](https://www.npmjs.com/package/react-toastify) to show some nice alerts!
+![alerts](https://user-images.githubusercontent.com/5574267/130804494-a9d2d69c-f170-4576-b2e1-0bb7f13dd92d.gif)
+
+---
+
+## Server Side - SingIn SingOut
+- Checkt the `AuthContext.tsx`file to see how we use the SingIn SingOut
+```javascript
+export function singOut() {
+    try {
+        destroyCookie(undefined, '@nextauth.token');
+        Router.push('/');
+    } catch (error) {
+        console.log('[BigShell Pizza - ERROR] - Sing out has an error ', error)
+    }
+}
+
+export function AuthProvider({ children }: AuthProviderProps) {
+
+    const [user, setUser] = useState<UserProps>();
+    // !!use -> return true if user has data, else false.
+    const isAuthenticated = !!user;
+
+
+    // cheking if is the user and getting his info
+    useEffect(() => {
+        const { '@nextauth.token': token } = parseCookies();
+
+        if (token) {
+            console.log("API ", api)
+            api.get('/me').then(response => {
+                const { id, name, email } = response.data;
+                setUser({ id, name, email })
+
+            }).catch(() => {
+                singOut();
+            })
+        }
+    }, [])
+
+    async function singIn({ email, password }: SingInProps) {
+
+        try {
+            const response = await api.post('/session', {
+                email,
+                password
+            })
+
+
+            const { id, name, token } = response.data;
+
+            setCookie(undefined, '@nextauth.token', token, {
+                maxAge: 60 * 60 * 24 * 30,
+                path: "/"
+            });
+
+            setUser({
+                id,
+                name,
+                email
+            })
+
+            // sharing the token for the requests
+            api.defaults.headers['Authorization'] = `Bearer ${token}`;
+
+            toast.success("Welcome !");
+
+            // Redirect the user for the dashboar page
+            Router.push('/dashboard');
+
+        } catch (error) {
+            toast.error("Something went wrong :(");
+            console.log("[ERROR] - Sing In Error ", error);
+        }
+    }
+
+    async function singUp({ name, email, password }: SingUpProps) {
+        try {
+            const response = await api.post('/users', {
+                name,
+                email,
+                password
+            })
+            toast.success("Registration done with success!");
+            Router.push('/');
+
+        } catch (error) {
+            toast.error("Something went wrong :(");
+            console.log("[ERROR] - Sing Up Error ", error);
+        }
+    }
+
+    return (
+        <AuthContext.Provider value={({ user, isAuthenticated, singIn, singOut, singUp })}>
+            {children}
+        </AuthContext.Provider>
+    )
+}
+```
