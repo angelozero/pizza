@@ -96,6 +96,7 @@ export default prismaClient;
 ---
 ## Client Auth / JWT 
 - For auth
+- ![jwt](https://i.postimg.cc/3wYJdL19/Whats-App-Image-2022-10-26-at-11-18-17-PM.jpg)
 ```javascript
 class SingService {
     async excute(user: UserModel) {
